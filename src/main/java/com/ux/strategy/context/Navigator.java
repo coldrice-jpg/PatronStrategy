@@ -1,23 +1,42 @@
 package com.ux.strategy.context;
 
-import com.ux.strategy.Istrategy.PublicTransportStrategy;
-import com.ux.strategy.Istrategy.RoadStrategy;
-import com.ux.strategy.Istrategy.RoutesStrategy;
-import com.ux.strategy.Istrategy.WalkingStrategy;
+import com.ux.strategy.Istrategy.*;
+
+import java.util.Scanner;
 
 public class Navigator {
 
     public static void main(String[] args) {
 
-        RoutesStrategy strategy = new PublicTransportStrategy();
+
+        RouteStrategy strategy = new PublicTransportStrategy();
 
         strategy.buildRoute("Xalapa", "CDMX");
 
-        strategy = new WalkingStrategy();
-        strategy.buildRoute("Johan Sebastian Bach", "Paseo de los fresnos");
 
-        strategy = new RoadStrategy();
-        strategy.buildRoute("Xalapa", "Veracruz");
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Selecciona el tipo de navegacion: 1. Road. \n2. Public Transport. \n3. Walking. \n4. Flight");
+        int option = sc.nextInt();
+
+        switch (option) {
+            case 1:
+                strategy = new RoadStrategy();
+                break;
+            case 2:
+                strategy = new PublicTransportStrategy();
+                break;
+            case 3:
+                strategy = new WalkingStrategy();
+                break;
+            case 4:
+                strategy = new FlightStrategy();
+                break;
+            default:
+                System.out.println("Opcion no valida, usando strategy por defecto.");
+                strategy = new RoadStrategy();
+
+        }
 
 
     }

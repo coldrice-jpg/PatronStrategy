@@ -1,6 +1,6 @@
 package com.ux.strategy.Istrategy;
 
-public class WalkingStrategy implements RoutesStrategy {
+public class WalkingStrategy implements RouteStrategy {
 
     @Override
     public void buildRoute(String origin, String destination) {
